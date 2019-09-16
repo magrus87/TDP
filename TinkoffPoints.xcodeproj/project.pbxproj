@@ -7,21 +7,59 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E16F42B232EA0EE003E77B3 /* NetworkUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F429232EA0EE003E77B3 /* NetworkUtility.swift */; };
+		5E16F42F232EA113003E77B3 /* PartnersResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F42D232EA113003E77B3 /* PartnersResponseModel.swift */; };
+		5E16F430232EA113003E77B3 /* PointsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F42E232EA113003E77B3 /* PointsResponseModel.swift */; };
+		5E16F436232EA125003E77B3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F431232EA125003E77B3 /* NetworkError.swift */; };
+		5E16F437232EA125003E77B3 /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F432232EA125003E77B3 /* HttpMethod.swift */; };
+		5E16F438232EA125003E77B3 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F433232EA125003E77B3 /* NetworkRequest.swift */; };
+		5E16F439232EA125003E77B3 /* DepositResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F434232EA125003E77B3 /* DepositResponse.swift */; };
+		5E16F43C232EA19F003E77B3 /* DepositPoints.API.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E16F43B232EA19F003E77B3 /* DepositPoints.API.plist */; };
+		5E16F440232EAE27003E77B3 /* DepositPointsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F43F232EAE27003E77B3 /* DepositPointsAPIService.swift */; };
+		5E16F442232F2556003E77B3 /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F441232F2556003E77B3 /* NetworkRequestFactory.swift */; };
+		5E16F44A232FA8DF003E77B3 /* CurrencyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F447232FA8DF003E77B3 /* CurrencyResponseModel.swift */; };
+		5E16F44B232FA8DF003E77B3 /* DailyLimitsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F448232FA8DF003E77B3 /* DailyLimitsResponseModel.swift */; };
+		5E16F44C232FA8DF003E77B3 /* LimitsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F449232FA8DF003E77B3 /* LimitsResponseModel.swift */; };
+		5E16F44F232FBCEB003E77B3 /* PartnersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F44D232FBCEB003E77B3 /* PartnersRequest.swift */; };
+		5E16F450232FBCEB003E77B3 /* PointsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F44E232FBCEB003E77B3 /* PointsRequest.swift */; };
 		5E63B82023254C44006C675F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B81F23254C44006C675F /* AppDelegate.swift */; };
-		5E63B82223254C44006C675F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B82123254C44006C675F /* ViewController.swift */; };
+		5E63B82223254C44006C675F /* DepositPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B82123254C44006C675F /* DepositPointsViewController.swift */; };
 		5E63B82823254C44006C675F /* TinkoffPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B82623254C44006C675F /* TinkoffPoints.xcdatamodeld */; };
 		5E63B82A23254C46006C675F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E63B82923254C46006C675F /* Assets.xcassets */; };
 		5E63B82D23254C46006C675F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E63B82B23254C46006C675F /* LaunchScreen.storyboard */; };
+		5E63B85A23254FCB006C675F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E63B85923254FCB006C675F /* MapKit.framework */; };
+		5E63B85C232552BA006C675F /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B85B232552BA006C675F /* AppRouter.swift */; };
+		5E63B8602325531D006C675F /* AppPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B85F2325531D006C675F /* AppPersistentContainer.swift */; };
+		5E63B863232553FF006C675F /* DepositPointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B862232553FF006C675F /* DepositPointsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5E16F429232EA0EE003E77B3 /* NetworkUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkUtility.swift; sourceTree = "<group>"; };
+		5E16F42D232EA113003E77B3 /* PartnersResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersResponseModel.swift; sourceTree = "<group>"; };
+		5E16F42E232EA113003E77B3 /* PointsResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsResponseModel.swift; sourceTree = "<group>"; };
+		5E16F431232EA125003E77B3 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		5E16F432232EA125003E77B3 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		5E16F433232EA125003E77B3 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		5E16F434232EA125003E77B3 /* DepositResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositResponse.swift; sourceTree = "<group>"; };
+		5E16F43B232EA19F003E77B3 /* DepositPoints.API.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DepositPoints.API.plist; sourceTree = "<group>"; };
+		5E16F43F232EAE27003E77B3 /* DepositPointsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPointsAPIService.swift; sourceTree = "<group>"; };
+		5E16F441232F2556003E77B3 /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
+		5E16F447232FA8DF003E77B3 /* CurrencyResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyResponseModel.swift; sourceTree = "<group>"; };
+		5E16F448232FA8DF003E77B3 /* DailyLimitsResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyLimitsResponseModel.swift; sourceTree = "<group>"; };
+		5E16F449232FA8DF003E77B3 /* LimitsResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitsResponseModel.swift; sourceTree = "<group>"; };
+		5E16F44D232FBCEB003E77B3 /* PartnersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersRequest.swift; sourceTree = "<group>"; };
+		5E16F44E232FBCEB003E77B3 /* PointsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsRequest.swift; sourceTree = "<group>"; };
 		5E63B81C23254C44006C675F /* TinkoffPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E63B81F23254C44006C675F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5E63B82123254C44006C675F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5E63B82123254C44006C675F /* DepositPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPointsViewController.swift; sourceTree = "<group>"; };
 		5E63B82723254C44006C675F /* TinkoffPoints.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffPoints.xcdatamodel; sourceTree = "<group>"; };
 		5E63B82923254C46006C675F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E63B82C23254C46006C675F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E63B82E23254C46006C675F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E63B85923254FCB006C675F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		5E63B85B232552BA006C675F /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		5E63B85F2325531D006C675F /* AppPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentContainer.swift; sourceTree = "<group>"; };
+		5E63B862232553FF006C675F /* DepositPointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPointsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +67,80 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E63B85A23254FCB006C675F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E16F424232E9D4F003E77B3 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F431232EA125003E77B3 /* NetworkError.swift */,
+				5E16F432232EA125003E77B3 /* HttpMethod.swift */,
+				5E16F433232EA125003E77B3 /* NetworkRequest.swift */,
+				5E16F441232F2556003E77B3 /* NetworkRequestFactory.swift */,
+				5E16F429232EA0EE003E77B3 /* NetworkUtility.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		5E16F425232E9D5E003E77B3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F43D232EA893003E77B3 /* DepositPoints */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5E16F426232E9D6E003E77B3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F424232E9D4F003E77B3 /* Network */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5E16F42C232EA113003E77B3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F434232EA125003E77B3 /* DepositResponse.swift */,
+				5E16F42E232EA113003E77B3 /* PointsResponseModel.swift */,
+				5E16F42D232EA113003E77B3 /* PartnersResponseModel.swift */,
+				5E16F447232FA8DF003E77B3 /* CurrencyResponseModel.swift */,
+				5E16F448232FA8DF003E77B3 /* DailyLimitsResponseModel.swift */,
+				5E16F449232FA8DF003E77B3 /* LimitsResponseModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5E16F43D232EA893003E77B3 /* DepositPoints */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F43E232EA8B1003E77B3 /* Methods */,
+				5E16F42C232EA113003E77B3 /* Models */,
+				5E16F43F232EAE27003E77B3 /* DepositPointsAPIService.swift */,
+			);
+			path = DepositPoints;
+			sourceTree = "<group>";
+		};
+		5E16F43E232EA8B1003E77B3 /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F43B232EA19F003E77B3 /* DepositPoints.API.plist */,
+				5E16F44D232FBCEB003E77B3 /* PartnersRequest.swift */,
+				5E16F44E232FBCEB003E77B3 /* PointsRequest.swift */,
+			);
+			path = Methods;
+			sourceTree = "<group>";
+		};
 		5E63B81323254C44006C675F = {
 			isa = PBXGroup;
 			children = (
 				5E63B81E23254C44006C675F /* TinkoffPoints */,
 				5E63B81D23254C44006C675F /* Products */,
+				5E63B85823254FCB006C675F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,8 +155,10 @@
 		5E63B81E23254C44006C675F /* TinkoffPoints */ = {
 			isa = PBXGroup;
 			children = (
-				5E63B81F23254C44006C675F /* AppDelegate.swift */,
-				5E63B82123254C44006C675F /* ViewController.swift */,
+				5E63B85D232552BF006C675F /* App */,
+				5E63B85E232552CD006C675F /* Modules */,
+				5E16F426232E9D6E003E77B3 /* Utilities */,
+				5E16F425232E9D5E003E77B3 /* Services */,
 				5E63B83423254CC4006C675F /* Support Files */,
 			);
 			path = TinkoffPoints;
@@ -70,6 +173,41 @@
 				5E63B82B23254C46006C675F /* LaunchScreen.storyboard */,
 			);
 			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		5E63B85823254FCB006C675F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E63B85923254FCB006C675F /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E63B85D232552BF006C675F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5E63B81F23254C44006C675F /* AppDelegate.swift */,
+				5E63B85B232552BA006C675F /* AppRouter.swift */,
+				5E63B85F2325531D006C675F /* AppPersistentContainer.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5E63B85E232552CD006C675F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5E63B86123255394006C675F /* DepositPoints */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		5E63B86123255394006C675F /* DepositPoints */ = {
+			isa = PBXGroup;
+			children = (
+				5E63B82123254C44006C675F /* DepositPointsViewController.swift */,
+				5E63B862232553FF006C675F /* DepositPointsViewModel.swift */,
+			);
+			path = DepositPoints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E16F43C232EA19F003E77B3 /* DepositPoints.API.plist in Resources */,
 				5E63B82D23254C46006C675F /* LaunchScreen.storyboard in Resources */,
 				5E63B82A23254C46006C675F /* Assets.xcassets in Resources */,
 			);
@@ -142,9 +281,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E63B82223254C44006C675F /* ViewController.swift in Sources */,
+				5E16F44C232FA8DF003E77B3 /* LimitsResponseModel.swift in Sources */,
+				5E16F442232F2556003E77B3 /* NetworkRequestFactory.swift in Sources */,
+				5E63B85C232552BA006C675F /* AppRouter.swift in Sources */,
+				5E16F44F232FBCEB003E77B3 /* PartnersRequest.swift in Sources */,
+				5E63B82223254C44006C675F /* DepositPointsViewController.swift in Sources */,
+				5E16F439232EA125003E77B3 /* DepositResponse.swift in Sources */,
+				5E16F42F232EA113003E77B3 /* PartnersResponseModel.swift in Sources */,
 				5E63B82023254C44006C675F /* AppDelegate.swift in Sources */,
+				5E16F437232EA125003E77B3 /* HttpMethod.swift in Sources */,
+				5E63B8602325531D006C675F /* AppPersistentContainer.swift in Sources */,
+				5E63B863232553FF006C675F /* DepositPointsViewModel.swift in Sources */,
+				5E16F440232EAE27003E77B3 /* DepositPointsAPIService.swift in Sources */,
+				5E16F430232EA113003E77B3 /* PointsResponseModel.swift in Sources */,
+				5E16F438232EA125003E77B3 /* NetworkRequest.swift in Sources */,
+				5E16F42B232EA0EE003E77B3 /* NetworkUtility.swift in Sources */,
+				5E16F44A232FA8DF003E77B3 /* CurrencyResponseModel.swift in Sources */,
 				5E63B82823254C44006C675F /* TinkoffPoints.xcdatamodeld in Sources */,
+				5E16F44B232FA8DF003E77B3 /* DailyLimitsResponseModel.swift in Sources */,
+				5E16F450232FBCEB003E77B3 /* PointsRequest.swift in Sources */,
+				5E16F436232EA125003E77B3 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

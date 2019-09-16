@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DepositPoints.API.Host</key>
+	<string>https://api.tinkoff.ru</string>
+	<key>DepositPoints.API.Version</key>
+	<string>v1</string>
+	<key>DepositPoints.API.Points</key>
+	<string>deposition_points</string>
+	<key>DepositPoints.API.Partners</key>
+	<string>deposition_partners</string>
+</dict>
+</plist>
