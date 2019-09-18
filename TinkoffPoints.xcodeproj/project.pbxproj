@@ -42,9 +42,13 @@
 		5EA9F01A2330D2C200927F5A /* PersistentWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F0192330D2C200927F5A /* PersistentWorker.swift */; };
 		5EA9F01C23321AC900927F5A /* PointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F01B23321AC900927F5A /* PointDetailView.swift */; };
 		5EA9F04A23325C1B00927F5A /* PointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04923325C1B00927F5A /* PointAnnotation.swift */; };
-		5EA9F04D23325C9900927F5A /* DepositPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04C23325C9900927F5A /* DepositPoint.swift */; };
-		5EA9F04F23325CAC00927F5A /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04E23325CAC00927F5A /* Partner.swift */; };
+		5EA9F04D23325C9900927F5A /* DepositPointPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04C23325C9900927F5A /* DepositPointPresentable.swift */; };
+		5EA9F04F23325CAC00927F5A /* PartnerPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04E23325CAC00927F5A /* PartnerPresentable.swift */; };
 		5EA9F0512332910A00927F5A /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F0502332910A00927F5A /* Array+Extension.swift */; };
+		5EA9F05C2332DC4400927F5A /* Partner+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F0582332DC4400927F5A /* Partner+CoreDataClass.swift */; };
+		5EA9F05D2332DC4400927F5A /* Partner+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F0592332DC4400927F5A /* Partner+CoreDataProperties.swift */; };
+		5EA9F05E2332DC4400927F5A /* DepositPoint+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F05A2332DC4400927F5A /* DepositPoint+CoreDataClass.swift */; };
+		5EA9F05F2332DC4400927F5A /* DepositPoint+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F05B2332DC4400927F5A /* DepositPoint+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,9 +89,13 @@
 		5EA9F0192330D2C200927F5A /* PersistentWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentWorker.swift; sourceTree = "<group>"; };
 		5EA9F01B23321AC900927F5A /* PointDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointDetailView.swift; sourceTree = "<group>"; };
 		5EA9F04923325C1B00927F5A /* PointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotation.swift; sourceTree = "<group>"; };
-		5EA9F04C23325C9900927F5A /* DepositPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPoint.swift; sourceTree = "<group>"; };
-		5EA9F04E23325CAC00927F5A /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
+		5EA9F04C23325C9900927F5A /* DepositPointPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPointPresentable.swift; sourceTree = "<group>"; };
+		5EA9F04E23325CAC00927F5A /* PartnerPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerPresentable.swift; sourceTree = "<group>"; };
 		5EA9F0502332910A00927F5A /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		5EA9F0582332DC4400927F5A /* Partner+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Partner+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5EA9F0592332DC4400927F5A /* Partner+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Partner+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5EA9F05A2332DC4400927F5A /* DepositPoint+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DepositPoint+CoreDataClass.swift"; sourceTree = "<group>"; };
+		5EA9F05B2332DC4400927F5A /* DepositPoint+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DepositPoint+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				5E63B85D232552BF006C675F /* App */,
-				5EA9F04B23325C4B00927F5A /* Entity */,
 				5E63B85E232552CD006C675F /* Modules */,
 				5EA9F0142330D23300927F5A /* Workers */,
 				5E16F426232E9D6E003E77B3 /* Utilities */,
@@ -294,6 +301,7 @@
 		5EA9F0142330D23300927F5A /* Workers */ = {
 			isa = PBXGroup;
 			children = (
+				5EA9F04B23325C4B00927F5A /* Entity */,
 				5EA9F0152330D24100927F5A /* PointsWorker */,
 				5EA9F0182330D2A600927F5A /* PersistentWorker */,
 			);
@@ -320,6 +328,10 @@
 		5EA9F025233238A500927F5A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5EA9F0582332DC4400927F5A /* Partner+CoreDataClass.swift */,
+				5EA9F0592332DC4400927F5A /* Partner+CoreDataProperties.swift */,
+				5EA9F05A2332DC4400927F5A /* DepositPoint+CoreDataClass.swift */,
+				5EA9F05B2332DC4400927F5A /* DepositPoint+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -327,8 +339,8 @@
 		5EA9F04B23325C4B00927F5A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				5EA9F04C23325C9900927F5A /* DepositPoint.swift */,
-				5EA9F04E23325CAC00927F5A /* Partner.swift */,
+				5EA9F04C23325C9900927F5A /* DepositPointPresentable.swift */,
+				5EA9F04E23325CAC00927F5A /* PartnerPresentable.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -405,7 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E16F44C232FA8DF003E77B3 /* LimitsResponseModel.swift in Sources */,
-				5EA9F04F23325CAC00927F5A /* Partner.swift in Sources */,
+				5EA9F04F23325CAC00927F5A /* PartnerPresentable.swift in Sources */,
 				5E16F442232F2556003E77B3 /* NetworkRequestFactory.swift in Sources */,
 				5E63B85C232552BA006C675F /* AppRouter.swift in Sources */,
 				5E16F452232FCF76003E77B3 /* AppLocationManager.swift in Sources */,
@@ -422,7 +434,8 @@
 				5E63B8602325531D006C675F /* AppPersistentContainer.swift in Sources */,
 				5E63B863232553FF006C675F /* DepositPointsViewModel.swift in Sources */,
 				5EA9F0172330D25F00927F5A /* PointsWorker.swift in Sources */,
-				5EA9F04D23325C9900927F5A /* DepositPoint.swift in Sources */,
+				5EA9F04D23325C9900927F5A /* DepositPointPresentable.swift in Sources */,
+				5EA9F05C2332DC4400927F5A /* Partner+CoreDataClass.swift in Sources */,
 				5E16F46523300BD0003E77B3 /* MKAnnotationView+Extension.swift in Sources */,
 				5E16F46023300BA7003E77B3 /* UIColor.swift in Sources */,
 				5E16F47D233016A2003E77B3 /* ImageService.swift in Sources */,
@@ -430,11 +443,14 @@
 				5E16F430232EA113003E77B3 /* PointsResponseModel.swift in Sources */,
 				5E16F46623300BD0003E77B3 /* MKMapView+Extension.swift in Sources */,
 				5E16F438232EA125003E77B3 /* NetworkRequest.swift in Sources */,
+				5EA9F05E2332DC4400927F5A /* DepositPoint+CoreDataClass.swift in Sources */,
 				5EA9F0102330976100927F5A /* DepositPointsUrlFactory.swift in Sources */,
 				5E16F42B232EA0EE003E77B3 /* NetworkUtility.swift in Sources */,
 				5E16F44A232FA8DF003E77B3 /* CurrencyResponseModel.swift in Sources */,
+				5EA9F05F2332DC4400927F5A /* DepositPoint+CoreDataProperties.swift in Sources */,
 				5E63B82823254C44006C675F /* TinkoffPoints.xcdatamodeld in Sources */,
 				5EA9F01323309EC600927F5A /* CacheUtility.swift in Sources */,
+				5EA9F05D2332DC4400927F5A /* Partner+CoreDataProperties.swift in Sources */,
 				5EA9F01C23321AC900927F5A /* PointDetailView.swift in Sources */,
 				5E16F44B232FA8DF003E77B3 /* DailyLimitsResponseModel.swift in Sources */,
 				5E16F436232EA125003E77B3 /* NetworkError.swift in Sources */,

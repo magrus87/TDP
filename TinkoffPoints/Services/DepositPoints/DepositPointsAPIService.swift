@@ -12,7 +12,7 @@ protocol DepositPointsAPIService {
     func fetchPoints(latitude: Double,
                      longitude: Double,
                      radius: Int,
-                     partners: String?,
+                     partners: [String]?,
                      success: (([PointsResponseModel]?) -> Void)?,
                      failure: ((Error) -> Void)?)
     
@@ -33,7 +33,7 @@ final class DepositPointsAPIServiceImpl: DepositPointsAPIService {
     func fetchPoints(latitude: Double,
                      longitude: Double,
                      radius: Int,
-                     partners: String?,
+                     partners: [String]?,
                      success: (([PointsResponseModel]?) -> Void)?,
                      failure: ((Error) -> Void)?) {
         
@@ -41,7 +41,7 @@ final class DepositPointsAPIServiceImpl: DepositPointsAPIService {
                                           "longitude": longitude,
                                           "radius": radius]
         if let partners = partners {
-            parameters["partners"] = partners
+            parameters["partners"] = partners.reduce("") { $0 + ",\($1)" }
         }
         
         let request = NetworkRequestDefault(url: urlFactory.urlPath(with: .points),

@@ -11,17 +11,20 @@ import MapKit
 import Contacts
 
 class PointAnnotation: NSObject, MKAnnotation {
+    var id: String
     var name: String?
     var workHours: String?
     var address: String?
     var picture: String?
     var coordinate: CLLocationCoordinate2D
     
-    init(name: String?,
+    init(id: String,
+         name: String?,
          coordinate: CLLocationCoordinate2D,
          workHours: String? = nil,
          address: String? = nil,
          picture: String? = nil) {
+        self.id = id
         self.name = name
         self.coordinate = coordinate
         self.workHours = workHours

@@ -9,7 +9,7 @@
 import Foundation
 
 struct PointsResponseModel: Decodable {
-    let externalId: String?
+    let externalId: String
     let partnerName: String?
     let latitude: Double
     let longitude: Double
@@ -32,7 +32,7 @@ struct PointsResponseModel: Decodable {
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
-        externalId = try? values.decode(String.self, forKey: .externalId)
+        externalId = try values.decode(String.self, forKey: .externalId)
         partnerName = try? values.decode(String.self, forKey: .partnerName)
         workHours = try? values.decode(String.self, forKey: .workHours)
         address = try? values.decode(String.self, forKey: .fullAddress)

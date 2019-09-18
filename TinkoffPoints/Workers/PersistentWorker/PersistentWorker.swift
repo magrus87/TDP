@@ -10,20 +10,167 @@ import Foundation
 import CoreData
 
 protocol PersistentWorker {
-    func save(_ objects: [NSManagedObject]?)
+    func savePartners(_ objects: [PartnerPresentable]?)
     
-    func fetch() -> [NSManagedObject]?
+    func fetchPartners(with id: String?) -> [PartnerPresentable]?
+    
+    func savePoints(_ objects: [DepositPointPresentable]?)
+    
+    func fetchPoints(partners: [String]?) -> [DepositPointPresentable]?
 }
 
 final class PersistentWorkerImpl: PersistentWorker {
-    private func fetch(entityName: String,
-                       sortKey: String? = nil,
-                       context: NSManagedObjectContext) -> [NSManagedObject] {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
-        if let sortKey = sortKey {
-            let sortDescriptor = NSSortDescriptor(key: sortKey, ascending: false)
-            fetchRequest.sortDescriptors = [sortDescriptor]
+    func savePartners(_ objects: [PartnerPresentable]?) {
+        guard let objects = objects else {
+            return
         }
+        
+        let oldPartners = fetchPartners()?.subtract(objects)
+        let newPartners = objects.subtract(fetchPartners())
+        
+        AppPersistentContainer.shared.container.performBackgroundTask { [weak self] (context) in
+            oldPartners?.forEach {
+                let object = self?.fetch(with: context,
+                                         entityName: "Partner",
+                                         predicate: NSPredicate(format: "id = %@", $0.id),
+                                         fetchLimit: nil,
+                                         sortDescriptors: nil).first
+                
+                object?.setValue($0.id, forKeyPath: "id")
+                object?.setValue($0.name, forKeyPath: "name")
+                object?.setValue($0.picture, forKeyPath: "picture")
+            }
+            
+            newPartners?.forEach {
+                let object = NSEntityDescription.insertNewObject(forEntityName: "Partner",
+                                                                 into: context)
+                
+                object.setValue($0.id, forKeyPath: "id")
+                object.setValue($0.name, forKeyPath: "name")
+                object.setValue($0.picture, forKeyPath: "picture")
+            }
+            
+            do {
+                try context.save()
+            } catch {
+                fatalError("\(error.localizedDescription)")
+            }
+        }
+        AppPersistentContainer.shared.saveContext()
+    }
+    
+    func fetchPartners(with id: String? = nil) -> [PartnerPresentable]? {
+        let context = AppPersistentContainer.shared.mainContext
+        
+        var predicate: NSPredicate?
+        if let id = id {
+            predicate = NSPredicate(format: "id == %@", id)
+        }
+        
+        let results = fetch(with: context,
+                            entityName: "Partner",
+                            predicate: predicate,
+                            fetchLimit: nil,
+                            sortDescriptors: nil)
+        
+        return results.compactMap { obj in
+            guard let id = obj.value(forKey: "id") as? String else {
+                return nil
+            }
+            return PartnerPresentable(id: id,
+                                      name: obj.value(forKey: "name") as? String,
+                                      picture: obj.value(forKey: "picture") as? String)
+        }
+    }
+    
+    func savePoints(_ objects: [DepositPointPresentable]?) {
+        guard let objects = objects else {
+            return
+        }
+        
+        let oldPoints = fetchPoints(partners: nil)?.subtract(objects)
+        let newPoints = objects.subtract(fetchPoints(partners: nil))
+        
+        AppPersistentContainer.shared.container.performBackgroundTask { [weak self] (context) in
+            oldPoints?.forEach {
+                let object = self?.fetch(with: context,
+                                         entityName: "DepositPoint",
+                                         predicate: NSPredicate(format: "id = %@", $0.id),
+                                         fetchLimit: nil,
+                                         sortDescriptors: nil).first
+                
+                object?.setValue($0.id, forKeyPath: "id")
+                object?.setValue($0.address, forKeyPath: "address")
+                object?.setValue($0.latitude, forKeyPath: "latitude")
+                object?.setValue($0.longitude, forKeyPath: "longitude")
+                object?.setValue($0.partner?.id, forKeyPath: "partner_name")
+                object?.setValue($0.workHours, forKeyPath: "work_hours")
+            }
+            
+            newPoints?.forEach {
+                let object = NSEntityDescription.insertNewObject(forEntityName: "DepositPoint",
+                                                                 into: context)
+                
+                object.setValue($0.id, forKeyPath: "id")
+                object.setValue($0.address, forKeyPath: "address")
+                object.setValue($0.latitude, forKeyPath: "latitude")
+                object.setValue($0.longitude, forKeyPath: "longitude")
+                object.setValue($0.partner?.id, forKeyPath: "partner_name")
+                object.setValue($0.workHours, forKeyPath: "work_hours")
+            }
+            
+            do {
+                try context.save()
+            } catch {
+                fatalError("\(error.localizedDescription)")
+            }
+        }
+        AppPersistentContainer.shared.saveContext()
+    }
+    
+    func fetchPoints(partners: [String]?) -> [DepositPointPresentable]? {
+        let context = AppPersistentContainer.shared.mainContext
+        
+        var predicate: NSPredicate?
+        if let partners = partners {
+            predicate = NSPredicate(format: "partner_name IN %@", partners)
+        }
+        let results = fetch(with: context,
+                            entityName: "DepositPoint",
+                            predicate: predicate,
+                            fetchLimit: nil,
+                            sortDescriptors: nil)
+        
+        return results.compactMap { obj in
+            guard let id = obj.value(forKey: "id") as? String,
+                let latitude = obj.value(forKey: "latitude") as? Double,
+                let longitude = obj.value(forKey: "longitude") as? Double else {
+                return nil
+            }
+            let partner = fetchPartners(with: obj.value(forKey: "partner_name") as? String)?.first
+            
+            return DepositPointPresentable(id: id,
+                                           workHours: obj.value(forKey: "work_hours") as? String,
+                                           address: obj.value(forKey: "address") as? String,
+                                           latitude: latitude,
+                                           longitude: longitude,
+                                           partner: partner)
+        }
+    }
+}
+
+extension PersistentWorkerImpl {
+    private func fetch(with context: NSManagedObjectContext,
+                       entityName: String,
+                       predicate: NSPredicate?,
+                       fetchLimit: Int?,
+                       sortDescriptors: [NSSortDescriptor]?) -> [NSManagedObject] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entityName)
+        if let fetchLimit = fetchLimit {
+            fetchRequest.fetchLimit = fetchLimit
+        }
+        fetchRequest.predicate = predicate
+        fetchRequest.sortDescriptors = sortDescriptors
         
         var results: [NSManagedObject] = []
         do {
@@ -34,83 +181,11 @@ final class PersistentWorkerImpl: PersistentWorker {
         return results
     }
     
-    // MARK: - PersistentWorker
-    
-    func save(_ objects: [NSManagedObject]?) {
-        guard let objects = objects else {
-            return
-        }
-        
-        
-        let context = AppPersistentContainer.shared.mainContext
-        
-//        objects.forEach {
-//            let object = NSEntityDescription.insertNewObject(forEntityName: "News", into: context)
-//
-//            object.setValue($0.id, forKeyPath: "id")
-//            object.setValue($0.text, forKeyPath: "text")
-//            object.setValue($0.publicationDate, forKeyPath: "publicationDate")
-//        }
-        
-        AppPersistentContainer.shared.saveContext()
+    private func insertNewObject(with context: NSManagedObjectContext,
+                                 entityName: String,
+                                 updateBlock:((NSManagedObject) -> Void)?) -> NSManagedObject {
+        let object = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
+        updateBlock?(object)
+        return object
     }
-    
-    func fetch() -> [NSManagedObject]? {
-        let context = AppPersistentContainer.shared.mainContext
-//        let results = fetch(entityName: "News", sortKey: "publicationDate", context: context)
-
-        return nil
-//        return results.map { obj -> TinkoffNews? in
-//            guard let id = obj.value(forKey: "id") as? Int,
-//                let text = obj.value(forKey: "text") as? String,
-//                let publicationDate = obj.value(forKey: "publicationDate") as? Date else {
-//                    return nil
-//            }
-//            return TinkoffNews(id: id, text: text, publicationDate: publicationDate)
-//            }.filter({
-//                $0 != nil
-//            }) as? [TinkoffNews]
-    }
-    
-//    - (__kindof NSManagedObject *)insertNewObjectWithContext:(NSManagedObjectContext *)context
-//    entityName:(NSString *)entityName
-//    updateBlock:(void (^)(__kindof NSManagedObject *obj))updateBlock
-//    {
-//    NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:entityName
-//    inManagedObjectContext:context];
-//
-//    //Здесь доабвил проверку тк при создании милза updateBlock = NULL и крашит
-//    if (updateBlock) {
-//    updateBlock(object);
-//    }
-//
-//    return object;
-//    }
-//
-//    - (NSArray *)fetchObjectsWithContext:(NSManagedObjectContext *)context
-//    entityName:(NSString *)entityName
-//    predicate:(NSPredicate *)predicate
-//    sortDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors
-//    fetchLimit:(NSNumber *)fetchLimit
-//    isReturnsObjectsAsFaults:(BOOL)isReturnsObjectsAsFaults
-//    {
-//    NSFetchRequest *fetch = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:entityName
-//    inManagedObjectContext:context];
-//    [fetch setEntity:entityDescription];
-//    if (fetchLimit) {
-//    [fetch setFetchLimit:fetchLimit.unsignedIntegerValue];
-//    }
-//    if (predicate) {
-//    [fetch setPredicate:predicate];
-//    }
-//    if (sortDescriptors) {
-//    [fetch setSortDescriptors:sortDescriptors];
-//    }
-//    [fetch setReturnsObjectsAsFaults:isReturnsObjectsAsFaults];
-//
-//    NSError *error = nil;
-//    NSArray *result = [context executeFetchRequest:fetch error:&error];
-//    return result ?: @[];
-//    }
 }

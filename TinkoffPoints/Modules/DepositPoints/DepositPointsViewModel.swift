@@ -61,18 +61,35 @@ final class DepositPointsViewModelImpl: DepositPointsViewModel {
         }
         
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            self?.worker.points(
+            self?.worker.fetchPoints(
                 latitude: latitude,
                 longitude: longitude,
                 radius: radius,
                 success: { [weak self] (points) in
-                    guard points.count > 0 else {
+                    guard let points = points, points.count > 0 else {
                         return
                     }
                     
+                    let annotations = points.map({
+                        PointAnnotation(id: $0.id,
+                                        name: $0.partner?.name,
+                                        coordinate: CLLocationCoordinate2DMake($0.latitude,
+                                                                               $0.longitude),
+                                        workHours: $0.workHours,
+                                        address: $0.address,
+                                        picture: $0.partner?.picture)
+                    })
+                    
                     self?.semaphore.wait()
                     
-                    let newPoints = points.subtract(self?.previousPoints)
+                    let newPoints = annotations
+                        .filter({
+                            guard let previous = self?.previousPoints else {
+                                return false
+                            }
+                            return !previous.map({ $0.id }).contains($0.id)
+                        })
+                    
                     let unavailablePoints = self?.previousPoints.filter {
                         let centerLocation = CLLocation(latitude: latitude,
                                                         longitude: longitude)
@@ -83,15 +100,22 @@ final class DepositPointsViewModelImpl: DepositPointsViewModel {
                         return Int(centerLocation.distance(from: pointLocation)) > radius
                     }
                     
-                    if let oldPoints = self?.previousPoints.subtract(unavailablePoints),
-                        let newPoints = newPoints {
+                    let oldPoints = self?.previousPoints
+                        .filter({
+                            guard let unavailable = unavailablePoints else {
+                                return false
+                            }
+                            return !unavailable.map({ $0.id }).contains($0.id)
+                        })
+                    
+                    if let oldPoints = oldPoints {
                         self?.previousPoints = oldPoints + newPoints
                     }
                     
                     self?.semaphore.signal()
                     
                     DispatchQueue.main.async {
-                        if let newPoints = newPoints, newPoints.count > 0 {
+                        if newPoints.count > 0 {
                             self?.delegate?.didReceivePoints(points: newPoints)
                         }
                         

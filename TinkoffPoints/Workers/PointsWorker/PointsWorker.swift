@@ -10,11 +10,11 @@ import Foundation
 import CoreLocation
 
 protocol PointsWorker {
-    func points(latitude: Double,
-                longitude: Double,
-                radius: Int,
-                success: (([PointAnnotation]) -> Void)?,
-                failure: ((Error) -> Void)?)
+    func fetchPoints(latitude: Double,
+                     longitude: Double,
+                     radius: Int,
+                     success: (([DepositPointPresentable]?) -> Void)?,
+                     failure: ((Error) -> Void)?)
 }
 
 final class PointsWorkerImpl: PointsWorker {
@@ -27,67 +27,88 @@ final class PointsWorkerImpl: PointsWorker {
         self.persistent = persistent
     }
     
-    func points(latitude: Double,
-                longitude: Double,
-                radius: Int,
-                success: (([PointAnnotation]) -> Void)?,
-                failure: ((Error) -> Void)?) {
-        let accountType = "Credit"
-        
-        partners(accountType: accountType) { partners in
-            partners?.forEach({ [weak self] partner in
+    func fetchPoints(latitude: Double,
+                     longitude: Double,
+                     radius: Int,
+                     success: (([DepositPointPresentable]?) -> Void)?,
+                     failure: ((Error) -> Void)?) {
+        let completePointsBlock: (([PartnerPresentable], [PointsResponseModel]?) -> Void) = { [weak self] (partnerPresentable, points) in
+            
+            guard let points = points, points.count > 0 else {
+                success?(self?.persistent.fetchPoints(partners: partnerPresentable.map { $0.id }))
+                return
+            }
+            
+            let pointsPresentable = points.map({ point -> DepositPointPresentable in
+                let partner = partnerPresentable.filter { $0.id == point.partnerName }.first
                 
-                let completeBlock: (([PointsResponseModel]?) -> [PointAnnotation]) = { [partner] points in
-                    return points?.compactMap({
-                        PointAnnotation(name: partner.name,
-                                         coordinate: CLLocationCoordinate2DMake($0.latitude,
-                                                                                $0.longitude),
-                                         workHours: $0.workHours,
-                                         address: $0.address,
-                                         picture: partner.picture)
-                    }) ?? []
-                }
-                
-                self?.points(
-                    latitude: latitude,
-                    longitude: longitude,
-                    radius: radius,
-                    partner: partner.id) { success?(completeBlock($0)) }
+                return DepositPointPresentable(id: point.externalId,
+                                               workHours: point.workHours,
+                                               address: point.address,
+                                               latitude: point.latitude,
+                                               longitude: point.longitude,
+                                               partner: partner)
             })
+            self?.persistent.savePoints(pointsPresentable)
+            success?(pointsPresentable)
+        }
+        
+        let completePartnersBlock: (([PartnerPresentable]?) -> Void) = { [weak self] partners in
+            guard let partners = partners, partners.count > 0 else {
+                success?(nil)
+                return
+            }
+
+            self?.points(latitude: latitude,
+                         longitude: longitude,
+                         radius: radius,
+                         partners: partners.map { $0.id },
+                         complete: { (points) in
+                            completePointsBlock(partners, points)
+            })
+        }
+        
+        let accountType = "Credit"
+        partners(accountType: accountType) { [weak self] partners in
+            guard let partners = partners, partners.count > 0 else {
+                completePartnersBlock(self?.persistent.fetchPartners(with: nil))
+                return
+            }
+            
+            let partnersPresentable = partners.map({
+                PartnerPresentable(id: $0.id,
+                                   name: $0.name,
+                                   picture: $0.picture)
+            })
+            self?.persistent.savePartners(partnersPresentable)
+            completePartnersBlock(partnersPresentable)
         }
     }
 }
 
 extension PointsWorkerImpl {
     private func partners(accountType: String, complete: (([PartnersResponseModel]?) -> Void)?) {
-        
-        
-        
         pointsService.fetchPartners(
             accountType: accountType,
-            success: { partners in
-                complete?(partners)
-        }) { (error) in
-            print(error.localizedDescription)
-            complete?(nil)
+            success: { complete?($0) }) { (error) in
+                print(error.localizedDescription)
+                complete?(nil)
         }
     }
     
     private func points(latitude: Double,
                         longitude: Double,
                         radius: Int,
-                        partner: String,
+                        partners: [String]?,
                         complete: (([PointsResponseModel]?) -> Void)?) {
         pointsService.fetchPoints(
             latitude: latitude,
             longitude: longitude,
             radius: radius,
-            partners: partner,
-            success: { (points) in
-                complete?(points)
-        }) { (error) in
-            print(error.localizedDescription)
-            complete?(nil)
+            partners: partners,
+            success: { complete?($0) }) { (error) in
+                print(error.localizedDescription)
+                complete?(nil)
         }
     }
 }
