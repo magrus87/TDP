@@ -9,6 +9,7 @@
 import Foundation
 
 enum NetworkError: Error {
+    case undefined(description: String)
     case emptyResponse
     case emptyData
     case badRequest

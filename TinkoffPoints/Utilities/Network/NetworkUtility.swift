@@ -9,14 +9,14 @@
 import Foundation
 
 protocol Network {
-    func send(request: NetworkRequest, completion: @escaping (Data?, Error?) -> Void)
+    func send(request: NetworkRequest, completion: @escaping (Data?, NetworkError?) -> Void)
 }
 
 final class NetworkUtility: Network {
     private lazy var requestFactory = NetworkRequestFactoryImpl()
     
-    internal func send(request: NetworkRequest, completion: @escaping (Data?, Error?) -> Void) {
-        guard let request = requestFactory.request(urlPath: request.absolutePath,
+    internal func send(request: NetworkRequest, completion: @escaping (Data?, NetworkError?) -> Void) {
+        guard let request = requestFactory.request(urlPath: request.url,
                                                    method: request.method,
                                                    headers: request.headers,
                                                    parameters: request.parameters) else {
@@ -27,7 +27,7 @@ final class NetworkUtility: Network {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                completion(nil, error)
+                completion(nil, NetworkError.undefined(description: error.localizedDescription))
                 return
             }
             

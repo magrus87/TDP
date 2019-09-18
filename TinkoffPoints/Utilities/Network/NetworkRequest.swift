@@ -9,58 +9,21 @@
 import Foundation
 
 protocol NetworkRequest {
-    var method: HttpMethod { get }
+    var url: String? { get set }
     
-    var headers: [String: String]? { get }
+    var method: HttpMethod { get set }
     
-    var parameters: [String: Any]? { get }
-
-    /// Имя файла настроек
-    var configName: String { get }
+    var headers: [String: String]? { get set }
     
-    var hostKey: String { get }
-    
-    var versionKey: String { get }
-    
-    var methodKey: String { get }
-    
-    var absolutePath: String? { get }
+    var parameters: [String: Any]? { get set }
 }
 
-extension NetworkRequest {
-    var method: HttpMethod {
-        return .get
-    }
+struct NetworkRequestDefault: NetworkRequest {
+    var url: String?
     
-    var headers: [String: String]? {
-        return ["Content-Type": "application/json; charset=utf-8"]
-    }
+    var method: HttpMethod
     
-    var parameters: [String: Any]? {
-        return nil
-    }
+    var headers: [String : String]?
     
-    var absolutePath: String? {
-        guard let configPath = Bundle.main.path(forResource: self.configName, ofType: "plist") else {
-            return nil
-        }
-        
-        guard let config = NSDictionary(contentsOfFile: configPath) else {
-            return nil
-        }
-        
-        guard let host = config[hostKey] as? String else {
-            return nil
-        }
-        
-        guard let version = config[versionKey] as? String else {
-            return nil
-        }
-        
-        guard let method = config[methodKey] as? String else {
-            return nil
-        }
-        
-        return "\(host)/\(version)/\(method)"
-    }
+    var parameters: [String : Any]?
 }

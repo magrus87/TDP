@@ -23,17 +23,24 @@ final class AppPersistentContainer {
         return container
     }()
     
+    var mainContext: NSManagedObjectContext {
+        let context = container.viewContext
+        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        return context
+    }
+    
     // MARK: - Core Data Saving support
     
     func saveContext () {
         let context = container.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+        guard context.hasChanges else {
+            return
+        }
+        
+        do {
+            try context.save()
+        } catch {
+            fatalError("\(error.localizedDescription)")
         }
     }
 }

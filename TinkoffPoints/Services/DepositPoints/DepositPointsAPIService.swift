@@ -22,9 +22,9 @@ protocol DepositPointsAPIService {
 }
 
 final class DepositPointsAPIServiceImpl: DepositPointsAPIService {
-    //private var requestFactory: DepositPointsRequestFactory
     
     private var network: Network
+    private var urlFactory = DepositPointsUrlFactoryImpl()
     
     init(network: Network) {
         self.network = network
@@ -36,10 +36,18 @@ final class DepositPointsAPIServiceImpl: DepositPointsAPIService {
                      partners: String?,
                      success: (([PointsResponseModel]?) -> Void)?,
                      failure: ((Error) -> Void)?) {
-        let request = PointsRequest(latitude: latitude,
-                                    longitude: longitude,
-                                    radius: radius,
-                                    partners: partners)
+        
+        var parameters: [String : Any] = ["latitude": latitude,
+                                          "longitude": longitude,
+                                          "radius": radius]
+        if let partners = partners {
+            parameters["partners"] = partners
+        }
+        
+        let request = NetworkRequestDefault(url: urlFactory.urlPath(with: .points),
+                                            method: .get,
+                                            headers: nil,
+                                            parameters: parameters)
         send(request: request,
              success: success,
              failure: failure)
@@ -48,7 +56,10 @@ final class DepositPointsAPIServiceImpl: DepositPointsAPIService {
     func fetchPartners(accountType: String,
                        success: (([PartnersResponseModel]?) -> Void)?,
                        failure: ((Error) -> Void)?) {
-        let request = PartnersRequest(accountType: accountType)
+        let request = NetworkRequestDefault(url: urlFactory.urlPath(with: .partners),
+                                            method: .get,
+                                            headers: nil,
+                                            parameters: ["accountType": accountType])
         send(request: request,
              success: success,
              failure: failure)

@@ -24,8 +24,20 @@ final class AppRouter: MainRouter {
     // MARK: - MainRouter
     
     func showDepositPointsScreen() {
-        let viewModel = DepositPointsViewModelImpl()
+        let network = NetworkUtility()
+        let cache = CacheUtility()
+        let persistent = PersistentWorkerImpl()
+        
+        let pointsService = DepositPointsAPIServiceImpl(network: network)
+        let imageService = ImageServiceImpl(network: network, cache: cache)
+        
+        let worker = PointsWorkerImpl(pointsService: pointsService,
+                                      persistent: persistent)
+        
+        let viewModel = DepositPointsViewModelImpl(worker: worker,
+                                                   imageService: imageService)
         let viewController = DepositPointsViewController(viewModel: viewModel)
+        viewModel.delegate = viewController
         window?.rootViewController = viewController
     }
 }

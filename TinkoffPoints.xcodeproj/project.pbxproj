@@ -20,8 +20,13 @@
 		5E16F44A232FA8DF003E77B3 /* CurrencyResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F447232FA8DF003E77B3 /* CurrencyResponseModel.swift */; };
 		5E16F44B232FA8DF003E77B3 /* DailyLimitsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F448232FA8DF003E77B3 /* DailyLimitsResponseModel.swift */; };
 		5E16F44C232FA8DF003E77B3 /* LimitsResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F449232FA8DF003E77B3 /* LimitsResponseModel.swift */; };
-		5E16F44F232FBCEB003E77B3 /* PartnersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F44D232FBCEB003E77B3 /* PartnersRequest.swift */; };
-		5E16F450232FBCEB003E77B3 /* PointsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F44E232FBCEB003E77B3 /* PointsRequest.swift */; };
+		5E16F452232FCF76003E77B3 /* AppLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F451232FCF76003E77B3 /* AppLocationManager.swift */; };
+		5E16F45A232FF00B003E77B3 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F459232FF00B003E77B3 /* PointView.swift */; };
+		5E16F46023300BA7003E77B3 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F45F23300BA7003E77B3 /* UIColor.swift */; };
+		5E16F46423300BD0003E77B3 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F46123300BD0003E77B3 /* ReusableView.swift */; };
+		5E16F46523300BD0003E77B3 /* MKAnnotationView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F46223300BD0003E77B3 /* MKAnnotationView+Extension.swift */; };
+		5E16F46623300BD0003E77B3 /* MKMapView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F46323300BD0003E77B3 /* MKMapView+Extension.swift */; };
+		5E16F47D233016A2003E77B3 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E16F473233016A2003E77B3 /* ImageService.swift */; };
 		5E63B82023254C44006C675F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B81F23254C44006C675F /* AppDelegate.swift */; };
 		5E63B82223254C44006C675F /* DepositPointsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B82123254C44006C675F /* DepositPointsViewController.swift */; };
 		5E63B82823254C44006C675F /* TinkoffPoints.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B82623254C44006C675F /* TinkoffPoints.xcdatamodeld */; };
@@ -31,6 +36,15 @@
 		5E63B85C232552BA006C675F /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B85B232552BA006C675F /* AppRouter.swift */; };
 		5E63B8602325531D006C675F /* AppPersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B85F2325531D006C675F /* AppPersistentContainer.swift */; };
 		5E63B863232553FF006C675F /* DepositPointsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63B862232553FF006C675F /* DepositPointsViewModel.swift */; };
+		5EA9F0102330976100927F5A /* DepositPointsUrlFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F00F2330976100927F5A /* DepositPointsUrlFactory.swift */; };
+		5EA9F01323309EC600927F5A /* CacheUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F01223309EC600927F5A /* CacheUtility.swift */; };
+		5EA9F0172330D25F00927F5A /* PointsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F0162330D25F00927F5A /* PointsWorker.swift */; };
+		5EA9F01A2330D2C200927F5A /* PersistentWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F0192330D2C200927F5A /* PersistentWorker.swift */; };
+		5EA9F01C23321AC900927F5A /* PointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F01B23321AC900927F5A /* PointDetailView.swift */; };
+		5EA9F04A23325C1B00927F5A /* PointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04923325C1B00927F5A /* PointAnnotation.swift */; };
+		5EA9F04D23325C9900927F5A /* DepositPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04C23325C9900927F5A /* DepositPoint.swift */; };
+		5EA9F04F23325CAC00927F5A /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F04E23325CAC00927F5A /* Partner.swift */; };
+		5EA9F0512332910A00927F5A /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA9F0502332910A00927F5A /* Array+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +61,13 @@
 		5E16F447232FA8DF003E77B3 /* CurrencyResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyResponseModel.swift; sourceTree = "<group>"; };
 		5E16F448232FA8DF003E77B3 /* DailyLimitsResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyLimitsResponseModel.swift; sourceTree = "<group>"; };
 		5E16F449232FA8DF003E77B3 /* LimitsResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimitsResponseModel.swift; sourceTree = "<group>"; };
-		5E16F44D232FBCEB003E77B3 /* PartnersRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersRequest.swift; sourceTree = "<group>"; };
-		5E16F44E232FBCEB003E77B3 /* PointsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsRequest.swift; sourceTree = "<group>"; };
+		5E16F451232FCF76003E77B3 /* AppLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLocationManager.swift; sourceTree = "<group>"; };
+		5E16F459232FF00B003E77B3 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
+		5E16F45F23300BA7003E77B3 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		5E16F46123300BD0003E77B3 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		5E16F46223300BD0003E77B3 /* MKAnnotationView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKAnnotationView+Extension.swift"; sourceTree = "<group>"; };
+		5E16F46323300BD0003E77B3 /* MKMapView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+Extension.swift"; sourceTree = "<group>"; };
+		5E16F473233016A2003E77B3 /* ImageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		5E63B81C23254C44006C675F /* TinkoffPoints.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffPoints.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E63B81F23254C44006C675F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5E63B82123254C44006C675F /* DepositPointsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPointsViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +79,15 @@
 		5E63B85B232552BA006C675F /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		5E63B85F2325531D006C675F /* AppPersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPersistentContainer.swift; sourceTree = "<group>"; };
 		5E63B862232553FF006C675F /* DepositPointsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPointsViewModel.swift; sourceTree = "<group>"; };
+		5EA9F00F2330976100927F5A /* DepositPointsUrlFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepositPointsUrlFactory.swift; sourceTree = "<group>"; };
+		5EA9F01223309EC600927F5A /* CacheUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheUtility.swift; sourceTree = "<group>"; };
+		5EA9F0162330D25F00927F5A /* PointsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsWorker.swift; sourceTree = "<group>"; };
+		5EA9F0192330D2C200927F5A /* PersistentWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentWorker.swift; sourceTree = "<group>"; };
+		5EA9F01B23321AC900927F5A /* PointDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointDetailView.swift; sourceTree = "<group>"; };
+		5EA9F04923325C1B00927F5A /* PointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointAnnotation.swift; sourceTree = "<group>"; };
+		5EA9F04C23325C9900927F5A /* DepositPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepositPoint.swift; sourceTree = "<group>"; };
+		5EA9F04E23325CAC00927F5A /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
+		5EA9F0502332910A00927F5A /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +117,7 @@
 		5E16F425232E9D5E003E77B3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				5E16F467233016A2003E77B3 /* ImageService */,
 				5E16F43D232EA893003E77B3 /* DepositPoints */,
 			);
 			path = Services;
@@ -98,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				5E16F424232E9D4F003E77B3 /* Network */,
+				5EA9F01123309E9500927F5A /* CacheUtility */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -118,22 +148,59 @@
 		5E16F43D232EA893003E77B3 /* DepositPoints */ = {
 			isa = PBXGroup;
 			children = (
-				5E16F43E232EA8B1003E77B3 /* Methods */,
 				5E16F42C232EA113003E77B3 /* Models */,
 				5E16F43F232EAE27003E77B3 /* DepositPointsAPIService.swift */,
+				5EA9F00F2330976100927F5A /* DepositPointsUrlFactory.swift */,
+				5E16F43B232EA19F003E77B3 /* DepositPoints.API.plist */,
 			);
 			path = DepositPoints;
 			sourceTree = "<group>";
 		};
-		5E16F43E232EA8B1003E77B3 /* Methods */ = {
+		5E16F453232FD61D003E77B3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5E16F43B232EA19F003E77B3 /* DepositPoints.API.plist */,
-				5E16F44D232FBCEB003E77B3 /* PartnersRequest.swift */,
-				5E16F44E232FBCEB003E77B3 /* PointsRequest.swift */,
+				5E16F459232FF00B003E77B3 /* PointView.swift */,
+				5EA9F01B23321AC900927F5A /* PointDetailView.swift */,
 			);
-			path = Methods;
+			path = Views;
 			sourceTree = "<group>";
+		};
+		5E16F454232FD93B003E77B3 /* Presentable */ = {
+			isa = PBXGroup;
+			children = (
+				5EA9F04923325C1B00927F5A /* PointAnnotation.swift */,
+			);
+			path = Presentable;
+			sourceTree = "<group>";
+		};
+		5E16F45D23300B8D003E77B3 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5EA9F0502332910A00927F5A /* Array+Extension.swift */,
+				5E16F45E23300B96003E77B3 /* UI */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		5E16F45E23300B96003E77B3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F46123300BD0003E77B3 /* ReusableView.swift */,
+				5E16F46323300BD0003E77B3 /* MKMapView+Extension.swift */,
+				5E16F46223300BD0003E77B3 /* MKAnnotationView+Extension.swift */,
+				5E16F45F23300BA7003E77B3 /* UIColor.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		5E16F467233016A2003E77B3 /* ImageService */ = {
+			isa = PBXGroup;
+			children = (
+				5E16F473233016A2003E77B3 /* ImageService.swift */,
+			);
+			name = ImageService;
+			path = TinkoffPoints/Services/ImageService;
+			sourceTree = SOURCE_ROOT;
 		};
 		5E63B81323254C44006C675F = {
 			isa = PBXGroup;
@@ -156,9 +223,12 @@
 			isa = PBXGroup;
 			children = (
 				5E63B85D232552BF006C675F /* App */,
+				5EA9F04B23325C4B00927F5A /* Entity */,
 				5E63B85E232552CD006C675F /* Modules */,
+				5EA9F0142330D23300927F5A /* Workers */,
 				5E16F426232E9D6E003E77B3 /* Utilities */,
 				5E16F425232E9D5E003E77B3 /* Services */,
+				5E16F45D23300B8D003E77B3 /* Extension */,
 				5E63B83423254CC4006C675F /* Support Files */,
 			);
 			path = TinkoffPoints;
@@ -189,6 +259,7 @@
 				5E63B81F23254C44006C675F /* AppDelegate.swift */,
 				5E63B85B232552BA006C675F /* AppRouter.swift */,
 				5E63B85F2325531D006C675F /* AppPersistentContainer.swift */,
+				5E16F451232FCF76003E77B3 /* AppLocationManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -204,10 +275,62 @@
 		5E63B86123255394006C675F /* DepositPoints */ = {
 			isa = PBXGroup;
 			children = (
+				5E16F454232FD93B003E77B3 /* Presentable */,
+				5E16F453232FD61D003E77B3 /* Views */,
 				5E63B82123254C44006C675F /* DepositPointsViewController.swift */,
 				5E63B862232553FF006C675F /* DepositPointsViewModel.swift */,
 			);
 			path = DepositPoints;
+			sourceTree = "<group>";
+		};
+		5EA9F01123309E9500927F5A /* CacheUtility */ = {
+			isa = PBXGroup;
+			children = (
+				5EA9F01223309EC600927F5A /* CacheUtility.swift */,
+			);
+			path = CacheUtility;
+			sourceTree = "<group>";
+		};
+		5EA9F0142330D23300927F5A /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				5EA9F0152330D24100927F5A /* PointsWorker */,
+				5EA9F0182330D2A600927F5A /* PersistentWorker */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		5EA9F0152330D24100927F5A /* PointsWorker */ = {
+			isa = PBXGroup;
+			children = (
+				5EA9F0162330D25F00927F5A /* PointsWorker.swift */,
+			);
+			path = PointsWorker;
+			sourceTree = "<group>";
+		};
+		5EA9F0182330D2A600927F5A /* PersistentWorker */ = {
+			isa = PBXGroup;
+			children = (
+				5EA9F025233238A500927F5A /* Model */,
+				5EA9F0192330D2C200927F5A /* PersistentWorker.swift */,
+			);
+			path = PersistentWorker;
+			sourceTree = "<group>";
+		};
+		5EA9F025233238A500927F5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5EA9F04B23325C4B00927F5A /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				5EA9F04C23325C9900927F5A /* DepositPoint.swift */,
+				5EA9F04E23325CAC00927F5A /* Partner.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,24 +405,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E16F44C232FA8DF003E77B3 /* LimitsResponseModel.swift in Sources */,
+				5EA9F04F23325CAC00927F5A /* Partner.swift in Sources */,
 				5E16F442232F2556003E77B3 /* NetworkRequestFactory.swift in Sources */,
 				5E63B85C232552BA006C675F /* AppRouter.swift in Sources */,
-				5E16F44F232FBCEB003E77B3 /* PartnersRequest.swift in Sources */,
+				5E16F452232FCF76003E77B3 /* AppLocationManager.swift in Sources */,
 				5E63B82223254C44006C675F /* DepositPointsViewController.swift in Sources */,
 				5E16F439232EA125003E77B3 /* DepositResponse.swift in Sources */,
+				5E16F45A232FF00B003E77B3 /* PointView.swift in Sources */,
+				5EA9F01A2330D2C200927F5A /* PersistentWorker.swift in Sources */,
+				5EA9F0512332910A00927F5A /* Array+Extension.swift in Sources */,
 				5E16F42F232EA113003E77B3 /* PartnersResponseModel.swift in Sources */,
+				5EA9F04A23325C1B00927F5A /* PointAnnotation.swift in Sources */,
 				5E63B82023254C44006C675F /* AppDelegate.swift in Sources */,
 				5E16F437232EA125003E77B3 /* HttpMethod.swift in Sources */,
+				5E16F46423300BD0003E77B3 /* ReusableView.swift in Sources */,
 				5E63B8602325531D006C675F /* AppPersistentContainer.swift in Sources */,
 				5E63B863232553FF006C675F /* DepositPointsViewModel.swift in Sources */,
+				5EA9F0172330D25F00927F5A /* PointsWorker.swift in Sources */,
+				5EA9F04D23325C9900927F5A /* DepositPoint.swift in Sources */,
+				5E16F46523300BD0003E77B3 /* MKAnnotationView+Extension.swift in Sources */,
+				5E16F46023300BA7003E77B3 /* UIColor.swift in Sources */,
+				5E16F47D233016A2003E77B3 /* ImageService.swift in Sources */,
 				5E16F440232EAE27003E77B3 /* DepositPointsAPIService.swift in Sources */,
 				5E16F430232EA113003E77B3 /* PointsResponseModel.swift in Sources */,
+				5E16F46623300BD0003E77B3 /* MKMapView+Extension.swift in Sources */,
 				5E16F438232EA125003E77B3 /* NetworkRequest.swift in Sources */,
+				5EA9F0102330976100927F5A /* DepositPointsUrlFactory.swift in Sources */,
 				5E16F42B232EA0EE003E77B3 /* NetworkUtility.swift in Sources */,
 				5E16F44A232FA8DF003E77B3 /* CurrencyResponseModel.swift in Sources */,
 				5E63B82823254C44006C675F /* TinkoffPoints.xcdatamodeld in Sources */,
+				5EA9F01323309EC600927F5A /* CacheUtility.swift in Sources */,
+				5EA9F01C23321AC900927F5A /* PointDetailView.swift in Sources */,
 				5E16F44B232FA8DF003E77B3 /* DailyLimitsResponseModel.swift in Sources */,
-				5E16F450232FBCEB003E77B3 /* PointsRequest.swift in Sources */,
 				5E16F436232EA125003E77B3 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
