@@ -19,7 +19,8 @@ final class NetworkUtility: Network {
         guard let request = requestFactory.request(urlPath: request.url,
                                                    method: request.method,
                                                    headers: request.headers,
-                                                   parameters: request.parameters) else {
+                                                   parameters: request.parameters,
+                                                   isLastModified: request.isLastModified) else {
                                                     completion(nil, NetworkError.badRequest)
                                                     return
         }

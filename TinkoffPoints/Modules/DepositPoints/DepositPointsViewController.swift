@@ -103,7 +103,9 @@ extension DepositPointsViewController: MKMapViewDelegate {
         
         let view = mapView.dequeueReusableView(annotation: annotation) as PointView
         view.annotation = annotation
-        view.setImage(nil)
+        viewModel.getImage(by: annotation.picture) { (image) in
+            view.setImage(image)
+        }
         (view.detailCalloutAccessoryView as? PointDetailView)?.setAddress(annotation.address)
         (view.detailCalloutAccessoryView as? PointDetailView)?.setWorkHours(annotation.workHours)
         return view

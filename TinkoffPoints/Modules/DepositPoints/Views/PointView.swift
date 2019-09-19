@@ -97,6 +97,6 @@ class PointView: MKAnnotationView {
     
     func setImage(_ image: UIImage?) {
         imageView.frame = CGRect(origin: .zero, size: CGSize(width: 30.0, height: 30.0))
-        imageView.image = UIImage(named: "ic_check_green")
+        imageView.image = image
     }
 }

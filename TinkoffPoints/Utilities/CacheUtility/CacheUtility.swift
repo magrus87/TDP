@@ -9,10 +9,6 @@
 import Foundation
 
 protocol Cache {
-    func isExistData(by path: String) -> Bool
-    
-    func modificationDate(by path: String) -> Date?
-    
     func fileData(by path: String) -> Data?
     
     func save(by path: String, data: Data?)
@@ -27,19 +23,6 @@ final class CacheUtility: Cache {
             return false
         }
         return FileManager.default.fileExists(atPath: url.path)
-    }
-    
-    func modificationDate(by path: String) -> Date? {
-        guard let url = url(with: path) else {
-            return nil
-        }
-        
-        do {
-            let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
-            return attributes[.modificationDate] as? Date
-        } catch {
-            return nil
-        }
     }
     
     func fileData(by path: String) -> Data? {

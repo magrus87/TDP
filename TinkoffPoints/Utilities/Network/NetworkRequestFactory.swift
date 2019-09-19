@@ -12,14 +12,16 @@ protocol NetworkRequestFactory {
     func request(urlPath: String?,
                  method: HttpMethod,
                  headers: [String: String]?,
-                 parameters: [String: Any]?) -> URLRequest?
+                 parameters: [String: Any]?,
+                 isLastModified: Bool?) -> URLRequest?
 }
 
 final class NetworkRequestFactoryImpl {
     func request(urlPath: String?,
                  method: HttpMethod,
                  headers: [String: String]?,
-                 parameters: [String: Any]? = nil) -> URLRequest? {
+                 parameters: [String: Any]? = nil,
+                 isLastModified: Bool? = false) -> URLRequest? {
         
         guard let url = url(with: urlPath, method: method, parameters: parameters) else {
             return nil
@@ -31,6 +33,16 @@ final class NetworkRequestFactoryImpl {
         headers?.forEach({
             request.addValue($0.value, forHTTPHeaderField: $0.key)
         })
+        
+        if let isLastModified = isLastModified, isLastModified {
+            let cachedResponse = URLCache.shared.cachedResponse(for: request)
+            let response = cachedResponse?.response as? HTTPURLResponse
+            
+            if let lastModified = response?.allHeaderFields["Last-Modified"] as? String {
+                request.setValue(lastModified,
+                                 forHTTPHeaderField: "If-Modified-Since")
+            }
+        }
         
         if let parameters = parameters, method != .get {
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters,

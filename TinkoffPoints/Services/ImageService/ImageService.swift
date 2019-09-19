@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ImageService {
-    func image(by url: String, complete: ((UIImage?) -> Void)?)
+    func image(url: String, complete: ((UIImage?) -> Void)?)
 }
 
 final class ImageServiceImpl: ImageService {
@@ -22,16 +22,8 @@ final class ImageServiceImpl: ImageService {
         self.cache = cache
     }
     
-    func image(by url: String, complete: ((UIImage?) -> Void)?) {
-        
-//        if cache.isExistData(by: url) {
-//            imageFromCache(by: url, complete: complete)
-//            return
-//        }
-        
-        let date = self.cache.modificationDate(by: url)
-        
-        fetchImage(by: url, modificationDate: date) { [weak self] (image) in
+    func image(url: String, complete: ((UIImage?) -> Void)?) {
+        fetchImage(by: url) { [weak self] (image) in
             
             guard let image = image else {
                 complete?(self?.imageFromCache(by: url))
@@ -56,9 +48,9 @@ final class ImageServiceImpl: ImageService {
     }
     
     private func fetchImage(by url: String,
-                            modificationDate: Date?,
                             complete: ((UIImage?) -> Void)?) {
-        let request = NetworkRequestDefault(url: url, method: .get, headers: nil, parameters: nil)
+        let request = NetworkRequestDefault(url: url, isLastModified: true)
+        
         network.send(request: request) { (data, error) in
             if error != nil {
                 complete?(nil)

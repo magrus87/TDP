@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import UIKit
 
 protocol DepositPointsViewModel {
     var defaultRadius: Int { get }
@@ -15,6 +16,8 @@ protocol DepositPointsViewModel {
     func getPoints(latitude: Double,
                    longitude: Double,
                    radius: Int)
+    
+    func getImage(by name: String?, complete:((UIImage?) -> Void)?)
 }
 
 protocol DepositPointsViewModelOutput: class {
@@ -82,40 +85,21 @@ final class DepositPointsViewModelImpl: DepositPointsViewModel {
                     
                     self?.semaphore.wait()
                     
-                    let newPoints = annotations
-                        .filter({
-                            guard let previous = self?.previousPoints else {
-                                return false
-                            }
-                            return !previous.map({ $0.id }).contains($0.id)
-                        })
-                    
-                    let unavailablePoints = self?.previousPoints.filter {
-                        let centerLocation = CLLocation(latitude: latitude,
-                                                        longitude: longitude)
-                        
-                        let pointLocation = CLLocation(latitude: $0.coordinate.latitude,
-                                                       longitude: $0.coordinate.longitude)
-                        
-                        return Int(centerLocation.distance(from: pointLocation)) > radius
-                    }
-                    
-                    let oldPoints = self?.previousPoints
-                        .filter({
-                            guard let unavailable = unavailablePoints else {
-                                return false
-                            }
-                            return !unavailable.map({ $0.id }).contains($0.id)
-                        })
-                    
-                    if let oldPoints = oldPoints {
+                    // пробегаем по вновь полученным точкам:
+                    // удаляем те которые на экран уже не попадают,
+                    // оставляем старые, чтоб не перерисовывать
+                    // и добавляем новые
+                    let newPoints = self?.newAnnotaions(of: annotations)
+                    let unavailablePoints = self?.unavailableAnnotaions(latitude: latitude, longitude: longitude, radius: radius)
+                    let oldPoints = self?.oldAnnotaions(without: unavailablePoints)
+                    if let oldPoints = oldPoints, let newPoints = newPoints {
                         self?.previousPoints = oldPoints + newPoints
                     }
                     
                     self?.semaphore.signal()
                     
                     DispatchQueue.main.async {
-                        if newPoints.count > 0 {
+                        if let newPoints = newPoints, newPoints.count > 0 {
                             self?.delegate?.didReceivePoints(points: newPoints)
                         }
                         
@@ -127,5 +111,54 @@ final class DepositPointsViewModelImpl: DepositPointsViewModel {
                 self?.delegate?.didReceiveError()
             }
         }
+    }
+    
+    func getImage(by name: String?, complete:((UIImage?) -> Void)?) {
+        guard let name = name else {
+            complete?(nil)
+            return
+        }
+        
+        // я знаю, что этот урл надо куда то засунуть, но уже сил нет :((
+        let imageUrl = "https://static.tinkoff.ru/icons/deposition-partners-v3/xhdpi/" + name
+        imageService.image(url: imageUrl) { (image) in
+            DispatchQueue.main.async {
+                complete?(image)
+            }
+        }
+    }
+}
+
+extension DepositPointsViewModelImpl {
+
+    private func newAnnotaions(of annotations: [PointAnnotation]) -> [PointAnnotation] {
+        return annotations
+            .filter({
+                return !previousPoints.map({ $0.id }).contains($0.id)
+            })
+    }
+    
+    private func unavailableAnnotaions(latitude: Double,
+                                       longitude: Double,
+                                       radius: Int) -> [PointAnnotation] {
+        return previousPoints.filter {
+            let centerLocation = CLLocation(latitude: latitude,
+                                            longitude: longitude)
+            
+            let pointLocation = CLLocation(latitude: $0.coordinate.latitude,
+                                           longitude: $0.coordinate.longitude)
+            
+            return Int(centerLocation.distance(from: pointLocation)) > radius
+        }
+    }
+    
+    private func oldAnnotaions(without annotations: [PointAnnotation]?) -> [PointAnnotation] {
+        guard let unavailablePoints = annotations else {
+            return []
+        }
+        return previousPoints
+            .filter({
+                return !unavailablePoints.map({ $0.id }).contains($0.id)
+            })
     }
 }
